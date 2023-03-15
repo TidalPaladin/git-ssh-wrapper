@@ -1,7 +1,8 @@
 # git-ssh-wrapper
 
 Implements a Python wrapper that enables specific identity files to be used when cloning specific repos.
-If no identity is specified a generic SSH command will be used.
+If no identity is specified a generic SSH command will be used. This application was created to solve issues
+that arise when using multiple deploy keys to clone multiple private VCS Pyton dependencies.
 
 ## Usage
 
@@ -20,13 +21,13 @@ repo2:
 You can then configure `git` to use the wrapper with
 
 ```bash
-export GIT_SSH_COMMAND='wrapped-ssh'
+export GIT_SSH_COMMAND='wrapped-ssh keyfile.yaml
 ```
 
 or
 
 ```bash
-export GIT_SSH_COMMAND='python -m git_ssh_wrapper'
+export GIT_SSH_COMMAND='python -m git_ssh_wrapper keyfile.yaml
 ```
 
 ### CLI Options
