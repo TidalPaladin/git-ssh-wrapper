@@ -1,34 +1,30 @@
-# Python Template
+# git-ssh-wrapper
 
-Template repository for Python projects. Uses [pdm](https://github.com/pdm-project/pdm) as the package manager.
+Implements a Python wrapper that enables specific identity files to be used when cloning specific repos.
+If no identity is specified a generic SSH command will be used.
 
 ## Usage
 
-1. Rename [project](./project) to the desired project name
-2. Update the `$PROJECT` variable in [Makefile](./Makefile) to match step 1
-3. Run `pdm init` to configure [pyproject.toml](./pyproject.toml)
-4. Add source code to the renamed `project` folder
-5. Run `make init` to install the project to a `pdm` virtual environment
-6. You can execute commands from the `pdm` environment with `pdm run`
+The association of keyfiles and repositories is configured through a YAML file
 
-## Recipes
-* `make style` - Runs code style formatting
-* `make quality` - Tests that code complies with quality standards
-* `make types` - Run static type checking with [pyright](https://github.com/microsoft/pyright)
-* `make test` - Run unit tests
-* `make test-pdb-*` - Run unit tests matching pattern `*` with fallback to [`pdb`](https://docs.python.org/3/library/pdb.html)
-  for debugging.
-* `make deploy` - Install dependencies from `pdm` lockfile
+```yaml
+repo1:
+  url: "org1/repo1.git"
+  identity: "id_rsa_repo1"
 
-## Optional steps
-* Setup CI - a template CircleCI config is provided in `.circeci/config.yml`
-* Create `config.mk` - secrets or per-user configuration can go here.
-  Template `config.mk.example` is under version control, but `config.mk`
-  is in `.gitignore`. Add `$(CONFIG_FILE)` as a make dependencies for recipes that
-  need vars from `config.mk`.
+repo2:
+  url: "org2/repo2.git"
+  identity: "id_rsa_repo2"
+```
 
-## Misc
+You can then configure `git` to use the wrapper with
 
-* Run `make help` to get a partial list of available make recipes
-* A pytest mark, `ci_skip`, is provided to mark tests that should be skipped 
-  during CI pipelines
+```bash
+export GIT_SSH_COMMAND='wrapped-ssh'
+```
+
+or
+
+```bash
+export GIT_SSH_COMMAND='python -m git_ssh_wrapper'
+```
