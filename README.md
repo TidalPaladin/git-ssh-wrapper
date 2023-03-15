@@ -1,4 +1,12 @@
+<div align="center">
+
 # git-ssh-wrapper
+
+[![codecov](https://codecov.io/gh/TidalPaladin/git-ssh-wrapper/branch/master/graph/badge.svg?token=sB4r91qLuG)](https://codecov.io/gh/TidalPaladin/git-ssh-wrapper)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/TidalPaladin/git-ssh-wrapper/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/TidalPaladin/git-ssh-wrapper/tree/master)
+[![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm.fming.dev)
+
+</div>
 
 Implements a Python wrapper that enables specific identity files to be used when cloning specific repos.
 If no identity is specified a generic SSH command will be used. This application was created to solve issues
