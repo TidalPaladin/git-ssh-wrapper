@@ -40,7 +40,8 @@ def main(args: argparse.Namespace):
         if args.dry_run:
             print(f"Would run {args.command} with default key")
         else:
-            subprocess.run(["ssh", *args.command], shell=True, check=True)
+            cmd = ["ssh", *args.command]
+            subprocess.run(cmd, check=True)
 
 
 def entrypoint():

@@ -25,7 +25,6 @@ class KeyfileEntry:
         subprocess.run(
             ["ssh", "-i", str(self.identity), *command],
             check=True,
-            shell=True,
         )
 
     @classmethod

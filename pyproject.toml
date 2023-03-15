@@ -62,8 +62,10 @@ quality = [
   "isort",
 ]
 
-[tool.pytest.ini_options.markers]
-ci_skip = "skip tests in CI environment"
+[tool.pytest.ini_options]
+markers = [
+  "ci_skip"
+]
 
 # Sample script config
 [project.scripts]

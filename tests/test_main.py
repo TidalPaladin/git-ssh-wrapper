@@ -16,6 +16,31 @@ def test_entrypoint():
     subprocess.run(["pdm", "run", "wrapped-ssh", "--help"], check=True)
 
 
+# TODO is there a way to run this in CI?
+@pytest.mark.ci_skip
+def test_clone_self(yaml_factory, tmp_path):
+    keyfiles = {
+        "repo1": KeyfileEntry(repo="source/repo1.git", identity=Path("identity1")),
+    }
+    path = tmp_path / "keyfiles.yaml"
+    dest = tmp_path / "dest"
+    yaml_factory(keyfiles, path)
+
+    import subprocess
+
+    out = subprocess.run(
+        [
+            "git",
+            "clone",
+            "git@github.com:TidalPaladin/git-ssh-wrapper.git",
+            str(dest),
+        ],
+        env={"GIT_SSH_COMMAND": f"pdm run wrapped-ssh {str(path)}"},
+        capture_output=True,
+    )
+    assert dest.is_dir()
+
+
 class TestMain:
     @pytest.fixture(autouse=True)
     def mock_run(self, mocker):
