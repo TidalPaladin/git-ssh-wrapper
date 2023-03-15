@@ -103,7 +103,7 @@ class TestKeyfile:
         keyfile.run(*command)
         m.assert_called_once()
         call = m.call_args
-        assert call.kwargs == {"check": True, "shell": True}
+        assert call.kwargs == {"check": True}
         assert len(call.args) == 1
 
         called_command = call.args[0]
