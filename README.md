@@ -28,3 +28,21 @@ or
 ```bash
 export GIT_SSH_COMMAND='python -m git_ssh_wrapper'
 ```
+
+### CLI Options
+
+```
+usage: ssh-wrapper [-h] [-i IDENTITY_ROOT] [-d] keyfile command [command ...]
+
+SSH wrapper for private cloning
+
+positional arguments:
+  keyfile               Path to the SSH key config
+  command               SSH command
+
+options:
+  -h, --help            show this help message and exit
+  -i IDENTITY_ROOT, --identity-root IDENTITY_ROOT
+                        Path to the directory containing the SSH identities
+  -d, --dry-run         Do not actually run the SSH command
+```
